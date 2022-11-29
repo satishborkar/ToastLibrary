@@ -1,0 +1,86 @@
+.toast-container {
+    position: fixed;
+    margin: 10px;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: all 200ms ease-in-out;
+}
+
+.toast-container[data-position^="top-"] {
+    top: 0;
+}
+
+.toast-container[data-position^="bottom-"] {
+    bottom: 0;
+}
+
+.toast-container[data-position$="-right"] {
+    right: 0;
+}
+
+.toast-container[data-position$="-left"] {
+    left: 0;
+}
+
+.toast-container[data-position$="-center"] {
+    left: 50%;
+    transform: translate(-50%);
+}
+
+.toast {
+    box-sizing: border-box;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid rgb(148, 146, 146);
+    border-radius: 3px;
+    position: relative;
+    width: 100%;
+    transition: transform 300ms ease-in-out;
+    overflow: hidden;
+}
+
+.toast-container[data-position$="-right"] .toast {
+    transform: translateX(110%);
+}
+
+.toast-container[data-position$="-left"] .toast {
+    transform: translateX(-110%);
+}
+
+.toast-container[data-position="top-center"] .toast {
+    transform: translateY(-100vh);
+}
+
+.toast-container[data-position="bottom-center"] .toast {
+    transform: translateY(100vh);
+}
+
+/* .toast-container should be there otherwise show class will not work due to CSS specificity */
+.toast-container .toast.show {
+    transform: translate(0, 0);
+}
+
+.toast.can-close {
+    cursor: pointer;
+}
+
+.toast.can-close::after {
+    content: "\00D7";
+    position: absolute;
+    top: 2px;
+    right: 5px;
+    color: rgb(148, 146, 146);
+}
+
+.toast.progress::before {
+    content: "";
+    position: absolute;
+    width: calc(100% * var(--progress));
+    height: 2px;
+    background-image: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
