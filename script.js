@@ -1,12 +1,11 @@
-import Toast from "./ToastAnimation.js";
+import Toast from "./ToastPauseOnHoverPauseOnWindowFocusLoss.js";
 let count = 1;
 document.querySelector("button").addEventListener("click", () => {
   const toast = new Toast({
     text: `Hello ${count}`,
+    position: "top-right",
+    pauseOnHover: true,
+    pauseOnFocusLoss: true,
   });
   count++;
-
-  // setTimeout(() => {
-  //   toast.update({ autoClose: 2000 });
-  // }, 1000);
 });
